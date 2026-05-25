@@ -1,0 +1,20 @@
+[Unit]
+Description=Claude MCP Server Bridge (supergateway)
+Documentation=https://github.com/mooyakoo/claude-remote-mcp
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=${WORK_DIR}
+Environment=HOME=/root
+ExecStart=${WORK_DIR}/start.sh
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=${SERVICE_NAME}
+
+[Install]
+WantedBy=multi-user.target
